@@ -1,13 +1,30 @@
 ﻿Console.WriteLine("Введите число: ");
-int number = int.Parse(Console.ReadLine());
+double number = double.Parse(Console.ReadLine());
 Console.WriteLine($"В какую степень необходимо возвести {number}? ");
-int stepen = int.Parse(Console.ReadLine());
+double stepen = double.Parse(Console.ReadLine());
 
 int i;
-int result = number;
-for(i = 1; i < stepen; i++)
+double result = number;
+
+if (stepen == 0)
 {
-    result = result * number;
+    result = 1;
 }
 
+else if (stepen > 0)
+{
+    for (i = 1; i < stepen; i++)
+    {
+        result = result * number;
+    }
+}
+else
+{
+    stepen = stepen * -1;
+    for (i = 1; i < stepen; i++)
+    {
+        result = result * number;
+    }
+    result = 1 / result;
+}
 Console.WriteLine($"{number} ^ {stepen} = {result}");
