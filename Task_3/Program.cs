@@ -1,8 +1,8 @@
-﻿int[] optionArray = OptionArray();
-int[] arrayNumber = new int[optionArray[0]];
-FillingArray(arrayNumber);
-SortArray(arrayNumber);
-PrintArray(arrayNumber);
+﻿int[] optionArray = OptionArray();//optionArray[0]/[1]/[2] - Длинна массива/минимальное значение/максимальное значение
+int[] arrayNumber = new int[optionArray[0]];//инициализация массива
+FillingArray(arrayNumber);//заполнение масива
+SortArray(arrayNumber);//сортировка от минимального значения массива к максимальному
+PrintArray(arrayNumber);//вывод на экран всех элементов массива
 
 
 int[] OptionArray()
