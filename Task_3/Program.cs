@@ -1,44 +1,58 @@
-﻿Console.WriteLine("задайте размер массива ");
-int sizeArray = int.Parse(Console.ReadLine());
-Console.WriteLine("минимальное значение массива");
-int minValueArray = int.Parse(Console.ReadLine());
-Console.WriteLine("максимальное значение массива ");
-int maxValueArray = int.Parse(Console.ReadLine());
-Console.WriteLine("");
+﻿int[] optionArray = OptionArray();
+int[] arrayNumber = new int[optionArray[0]];
+FillingArray(arrayNumber);
+SortArray(arrayNumber);
+PrintArray(arrayNumber);
 
-int[] numbers = new int[sizeArray];
-numbers[0] = minValueArray;
-numbers[sizeArray - 1] = maxValueArray;
 
-int index;
-for (index = 1; index < sizeArray - 1; index++)
+int[] OptionArray()
 {
-    numbers[index] = new Random().Next(minValueArray, maxValueArray);
+    int[] optionArray = { 0, 0, 0 };
+    Console.WriteLine("size array ");
+    optionArray[0] = int.Parse(Console.ReadLine());
+    Console.WriteLine("min value array ");
+    optionArray[1] = int.Parse(Console.ReadLine());
+    Console.WriteLine("max value array ");
+    optionArray[2] = int.Parse(Console.ReadLine());
+    return optionArray;
 }
 
-int index1;
-for (index1 = 0; index1 < numbers.Length - 1; index1++)
+int[] FillingArray(int[] arrayNumber)
 {
-
-    int index2;
-    for (index2 = index1 + 1; index2 < numbers.Length; index2++)
+    arrayNumber[0] = optionArray[1];
+    arrayNumber[optionArray[0] - 1] = optionArray[2];
+    int index;
+    for (index = 1; index < optionArray[0] - 1; index++)
     {
-        if (numbers[index2] < numbers[index1])
+        arrayNumber[index] = new Random().Next(optionArray[1], optionArray[2] + 1);
+    }
+    return arrayNumber;
+}
+
+void PrintArray(int[] arrayNumber)
+{
+    int index;
+    for (index = 0; index < optionArray[0]; index++)
+    {
+        Console.WriteLine(arrayNumber[index]);
+    }
+}
+
+int[] SortArray(int[] arrayNumber)
+{
+    int index1;
+    for (index1 = 0; index1 < arrayNumber.Length - 1; index1++)
+    {
+        int index2;
+        for (index2 = index1 + 1; index2 < arrayNumber.Length; index2++)
         {
-            int temp = numbers[index1];
-            numbers[index1] = numbers[index2];
-            numbers[index2] = temp;
+            if (arrayNumber[index2] < arrayNumber[index1])
+            {
+                int temp = arrayNumber[index1];
+                arrayNumber[index1] = arrayNumber[index2];
+                arrayNumber[index2] = temp;
+            }
         }
     }
+    return arrayNumber;
 }
-
-void Print(int[] array)
-{
-    int i;
-    for (i = 0; i < sizeArray; i++)
-    {
-        Console.Write(array[i] + " ");
-    }
-}
-
-Print(numbers);
