@@ -1,33 +1,39 @@
-﻿Console.WriteLine("Введите ПОЛОЖИТЕЛЬНОЕ число: ");
-int number = int.Parse(Console.ReadLine());
+﻿int number = GetNumberInput();
+int digit = DigitInNumber(number);
+int result = SumDigitNumber(number, digit);
+Console.WriteLine(result);
 
-// определяю количество знаков в числе
-int variable = number;
-int count = 1;
-int i = 1;
-
-while(variable / 10 != 0)
-{
-    variable = variable / 10;
-    count++;
-    i = i * 10;
-}
-//инициализирую и заполняю массив
-
-int[] array= new int[count];
-int index = 0;
-while (index < array.Length)
-{
-    array[index] =number / i % 10;
-    i = i / 10;
-    index++;
+int GetNumberInput()
+{   
+    Console.WriteLine("input number ");
+    string inputNumber = Console.ReadLine();
+    int number = int.Parse(inputNumber);
+    return number;
 }
 
-int j;
-int res = 0;
-for(j=0;j<array.Length;j++)
+int SumDigitNumber(int number, int DigitInNumber)
 {
-    res = res + array[j];
+    int sum = 0;
+    int j;
+    int temp = 1;
+    for (j = 1; j <= DigitInNumber; j++)
+    {
+        
+        int plusSum = (number / temp) % 10;
+        sum = sum + plusSum;
+        temp *= 10;
+    }
+    return sum;
 }
 
-Console.WriteLine($"сумма = {res}");
+int DigitInNumber(int number)
+{
+    int i = 10;
+    int digit = 1;
+    while (number / i != 0)
+    {
+        i *= 10;
+        digit++;
+    }
+    return digit;
+}
